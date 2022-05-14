@@ -1,4 +1,63 @@
 <!DOCTYPE html>
-<body style="background-color:black;">
+<html>
+    <!-- The <head> element is a container for metadata (data about data) and is placed between the <html> tag and the <body> tag. 
+    Metadata is data about the HTML document. Metadata is not displayed. Metadata typically define the document title, 
+    character set, styles, scripts, and other meta information. -->
+  <head> 
+    <meta charset="utf-8" />
+    <title>HTML5 Pacman Game</title>
+
+    <!-- The Style Information element. The <style> HTML element contains style information for a document, or part of a document. 
+    It contains CSS, which is applied to the contents of the document containing the <style> element. -->
+    <style type="text/css">
+      @font-face {
+	    font-family: 'BDCartoonShoutRegular';
+        src: url('BD_Cartoon_Shout-webfont.ttf') format('truetype');
+	    font-weight: normal;
+	    font-style: normal;
+      }
+      #pacman {
+        height:100vh;
+        width:100vh;
+        /* margin-left: auto;
+        margin-right: auto; */
+      }
+      #canvas {
+        height:450px;
+        width:842px;
+        margin-left: 45.5%;
+      }
+      #shim {
+        font-family: BDCartoonShoutRegular;
+        position:absolute;
+        visibility:hidden;
+      }
+      h1 {font-family: BDCartoonShoutRegular; text-align:center; margin-top: 80px;}
+      body { font-family:sans-serif; }
+      a { text-decoration:none; }
+    </style>
+
+</head>
+
+<!-- The <body> tag defines the document's body. The <body> element contains all the contents of an HTML document, such as headings, 
+paragraphs, images, hyperlinks, tables, lists, etc. Note: There can only be one <body> element in an HTML document. -->
+<body style="background-color: black;">
+
+  <div id="shim">shim for font face</div>
+
+  <h1 style="color: white;">Pac-man</h1>
+
+  <div id="pacman">
+      <canvas id="canvas"></canvas>
+  </div>
+
+  <script src="pacman.js"></script>
+
+  <script>
+
+    var el = document.getElementById("pacman");
+      window.setTimeout(function () { PACMAN.init(el, "./"); }, 0);
+  </script>
 
 </body>
+</html>
