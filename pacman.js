@@ -204,7 +204,6 @@ Pacman.Ghost = function (game, map, colour) {
     };
 
     function pane(pos) {
-
         if (pos.y === 100 && pos.x >= 190 && direction === RIGHT) {
             return {"y": 100, "x": -10};
         }
@@ -217,7 +216,6 @@ Pacman.Ghost = function (game, map, colour) {
     };
 
     function move(ctx) {
-
         var oldPos = position,
             onGrid = onGridSquare(position),
             npos   = null;
@@ -618,7 +616,7 @@ Pacman.Map = function (size) {
                     ctx.fillStyle = "#FFF";
                     ctx.arc((j * blockSize) + blockSize / 2,
                             (i * blockSize) + blockSize / 2,
-                            Math.abs(5 - (pillSize/3)),
+                            Math.abs(5 - (pillSize/2.5)),
                             0,
                             Math.PI * 2, false);
                     ctx.fill();
@@ -663,8 +661,8 @@ Pacman.Map = function (size) {
 
             if (layout === Pacman.BISCUIT) {
                 ctx.fillStyle = "#FFF";
-		        ctx.fillRect((x * blockSize) + (blockSize / 2.5),
-                             (y * blockSize) + (blockSize / 2.5),
+		        ctx.fillRect((x * blockSize) + (blockSize / 3),
+                             (y * blockSize) + (blockSize / 3),
                              blockSize / 6, blockSize / 6);
 	        }
         }
@@ -806,7 +804,7 @@ var PACMAN = (function () {
         ctx.font      = "30px BDCartoonShoutRegular";
         var width = ctx.measureText(text).width,
             x     = ((map.width * map.blockSize) - width) / 2;
-        ctx.fillText(text, 70, (map.height * 10) + 195);
+        ctx.fillText(text, 30, (map.height * 10) + 155);
     }
 
     function soundDisabled() {
@@ -873,35 +871,31 @@ var PACMAN = (function () {
     };
 
     function drawFooter() {
-
         var topLeft  = (map.height * map.blockSize),
             textBase = topLeft + 30;
         ctx.fillStyle = "#000000";
-        ctx.fillRect(0, topLeft+30, (map.width * map.blockSize), 10);
+        ctx.fillRect(0, topLeft, (map.width * map.blockSize), 10);
 
         ctx.fillStyle = "#FFFF00";
 
         for (var i = 0, len = user.getLives(); i < len; i++) {
             ctx.fillStyle = "#FFFF00";
             ctx.beginPath();
-            ctx.moveTo(298 + (60 * i) + map.blockSize / 8,
-                       (topLeft+10) + map.blockSize / 8);
+            ctx.moveTo(230 + (80 * i) + map.blockSize / 2,
+                       (topLeft+10) + map.blockSize / 2);
 
-            ctx.arc(298 + (60 * i) + (map.blockSize / 8),
-                    (topLeft+10) + (map.blockSize / 8),
-                    map.blockSize-25, Math.PI * 0.25, Math.PI * 1.75, false);
+            ctx.arc(230 + (80 * i) + (map.blockSize / 2),
+                    (topLeft+10) + (map.blockSize / 2),
+                    map.blockSize, Math.PI * 0.25, Math.PI * 1.75, false);
             ctx.fill();
         }
 
         ctx.fillStyle = !soundDisabled() ? "6#00FF00" : "#FF0000";
-        ctx.font = "bold 16px sans-serif";
-        //ctx.fillText("♪", 10, textBase);
-        ctx.fillText("s", 17, textBase);
 
         ctx.fillStyle = "#FFFF00";
-        ctx.font      = "14px BDCartoonShoutRegular";
-        ctx.fillText("Score: " + user.theScore(), 30, textBase);
-        ctx.fillText("Level: " + level, 638, textBase);
+        ctx.font      = "25px BDCartoonShoutRegular";
+        ctx.fillText("Score: " + user.theScore(), 17, textBase);
+        ctx.fillText("Level: " + level, 515, textBase);
     }
 
     function redrawBlock(pos) {
@@ -1029,13 +1023,11 @@ var PACMAN = (function () {
     function init(wrapper, root) {
 
         var i, len, ghost,
-            blockSize = wrapper.offsetWidth / 19;
+            blockSize = wrapper.offsetWidth / 21;
             var canvas    = document.getElementById("canvas");
 
          canvas.setAttribute("width", (blockSize * 19) + "px");
-        canvas.setAttribute("height", (blockSize * 22) + 30 + "px");
-
-        // wrapper.appendChild(canvas);
+        canvas.setAttribute("height", (blockSize * 25) + 30 + "px");
 
         ctx  = canvas.getContext('2d');
 
