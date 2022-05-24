@@ -126,7 +126,7 @@ Pacman.Ghost = function (game, map, colour) {
         return (game.getTick() - tick) / Pacman.FPS;
     };
 
-    function getColour() {
+    function getColor() {
         if (eatable) {
             if (secondsAgo(eatable) > 5) {
                 return game.getTick() % 20 > 10 ? "#FFFFFF" : "#0000BB";
@@ -160,7 +160,7 @@ Pacman.Ghost = function (game, map, colour) {
         var high = game.getTick() % 10 > 5 ? 3  : -3;
         var low  = game.getTick() % 10 > 5 ? -3 : 3;
 
-        ctx.fillStyle = getColour();
+        ctx.fillStyle = getColor();
         ctx.beginPath();
 
         ctx.moveTo(left, base);
@@ -793,7 +793,7 @@ var PACMAN = (function () {
 
     function drawScore(text, position) {
         ctx.fillStyle = "#FFFFFF";
-        ctx.font      = "12px BDCartoonShoutRegular";
+        ctx.font      = "20px BDCartoonShoutRegular";
         ctx.fillText(text,
                      (position["new"]["x"] / 10) * map.blockSize,
                      ((position["new"]["y"] + 5) / 10) * map.blockSize);
@@ -870,7 +870,7 @@ var PACMAN = (function () {
                           Math.pow(ghost.y - user.y, 2))) < 10;
     };
 
-    function drawFooter() {
+    function drawFooter() { // the bottom text
         var topLeft  = (map.height * map.blockSize),
             textBase = topLeft + 30;
         ctx.fillStyle = "#000000";
